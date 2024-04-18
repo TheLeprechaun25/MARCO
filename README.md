@@ -1,1 +1,20 @@
 # MARCO
+
+
+
+
+## NEURAL IMPROVEMENT METHOD FOR THE MAXIMUM CUT PROBLEM
+Check out the MC/ folder
+
+
+## NEURAL IMPROVEMENT METHOD FOR THE MAXIMUM INDEPENDENT SET PROBLEM
+Check out the MIS/ folder
+
+
+## NEURAL CONSTRUCTIVE METHOD FOR THE TRAVELLING SALESMAN PROBLEM
+Check out the TSP/ folder
+
+
+## DATA
+Download the data/ folder to the main path
+
