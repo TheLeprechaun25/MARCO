@@ -2,8 +2,9 @@
 
 ## Overview
 MARCO offers an innovative approach to neural combinatorial optimization (NCO). It integrates a memory module that prevents redundant exploration and promotes the discovery of diverse, high-quality solutions across various problem domains. We include implementations for the maximum cut (MC), maximum independent set (MIS), and the traveling salesman problem (TSP).
-
-![marco](marco.png)
+<div align="center">
+  <img src="marco_general_framework.png" alt="marco">
+</div>
 
 ## Requirements
 
