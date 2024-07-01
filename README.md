@@ -1,5 +1,7 @@
 # MARCO: Memory-Augmented Reinforcement framework for Combinatorial Optimization
 
+![Static Badge](https://img.shields.io/badge/Python-3.8-blue) ![Static Badge](https://img.shields.io/badge/Pytorch-2.0-green)
+
 ## Overview
 MARCO offers an innovative approach to neural combinatorial optimization (NCO). It integrates a memory module that prevents redundant exploration and promotes the discovery of diverse, high-quality solutions across various problem domains. We include implementations of improvement methods for the maximum cut (MC) and maximum independent set (MIS), and constructive method for the traveling salesman problem (TSP).
 <div align="center">
