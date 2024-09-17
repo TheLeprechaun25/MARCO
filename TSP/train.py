@@ -68,9 +68,9 @@ trainer_params = {
         'path': f'result/tsp_cl100200',  # directory path of pre-trained model and log files saved.
         'epoch': 180,  # epoch version of pre-trained model to load.
     },
-    'test_sizes': [500],
+    'test_sizes': [200],
     'test_batch_sizes': [10],
-    'test_pomo_sizes': [50],
+    'test_pomo_sizes': [20],
 }
 
 logger_params = {
