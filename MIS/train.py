@@ -7,7 +7,7 @@ import torch.nn.functional as F
 from torch.optim import AdamW as Optimizer
 from nets.model import Model
 from env.Env import Env
-from utils import generate_word, read_rb_dataset
+from utils import generate_word, load_eval_data, read_rb_dataset
 from options.train_options import get_options
 
 
@@ -48,22 +48,15 @@ class Trainer:
             for param_group in self.optimizer.param_groups:
                 param_group['lr'] = self.optimizer_params['optimizer']['lr']
 
-        # Load test data: 8 er graphs of 700-800 nodes and 16 br graphs of 200-300 nodes
+        # Load eval data
         self.test_graphs = []
         self.greedy_test_fitness = []
-        # ER
-        for i in range(8):
-            graph_path = f"../data/er_700_800/ER_700_800_0.15_{i}.gpickle"
-            g = pickle.load(open(graph_path, 'rb'))
-            self.test_graphs.append(torch.tensor(nx.to_numpy_array(g), dtype=torch.float32).to("cpu"))
-        greedy_fitness = list(pickle.load(open(f"results/greedy_results/er_700_800.pkl", 'rb')))
-        self.greedy_test_fitness.extend(greedy_fitness[:8])
-        # RB
         nx_rb_graphs = read_rb_dataset(f"../data/rb200-300")
-        for g in nx_rb_graphs[:16]:
+        for g in nx_rb_graphs[:4]:
             self.test_graphs.append(torch.tensor(nx.to_numpy_array(g), dtype=torch.float32).to("cpu"))
         greedy_fitness = list(pickle.load(open(f"results/greedy_results/rb_200_300.pkl", 'rb')))
-        self.greedy_test_fitness.extend(greedy_fitness[:16])
+        self.greedy_test_fitness.extend(greedy_fitness[:4])
+
 
     def train(self):
         # initialize fitness moving average
@@ -192,18 +185,9 @@ class Trainer:
         test_results = {}
 
         path = f"saved_models/{self.trainer_params['execution_name']}_epoch{epoch}{episode}_"
-        # Testing in 8 er graphs of 700-800 nodes and 16 br graphs of 200-300 nodes
-        er_graphs = self.test_graphs[:8]
-        greedy_er_test_fitness = self.greedy_test_fitness[:8]
-        best_fitness, best_gap, avg_fitness, avg_gap, _ = self.run_test(er_graphs, greedy_er_test_fitness)
-        test_results['best_fitness_er'] = best_fitness
-        test_results['best_gap_er'] = best_gap
-        test_results['avg_fitness_er'] = avg_fitness
-        test_results['avg_gap_er'] = avg_gap
-        path += f"_er700800_{best_fitness:.2f}__"
 
-        rb_graphs = self.test_graphs[8:]
-        greedy_rb_test_fitness = self.greedy_test_fitness[8:]
+        rb_graphs = self.test_graphs
+        greedy_rb_test_fitness = self.greedy_test_fitness
         best_fitness, best_gap, avg_fitness, avg_gap, _ = self.run_test(rb_graphs, greedy_rb_test_fitness)
         test_results['best_fitness_rb'] = best_fitness
         test_results['best_gap_rb'] = best_gap

@@ -187,7 +187,7 @@ class Trainer:
     def run_tests(self, epoch, episode=""):
         test_results = {}
 
-        path = f"saved_models/{self.memory_params['memory_type']}_{self.trainer_params['execution_name']}_{self.model_params['encoder']}_epoch{epoch}{episode}_n{self.env.n}_"
+        path = f"saved_models/{self.memory_params['memory_type']}_{self.trainer_params['execution_name']}_epoch{epoch}{episode}_n{self.env.n}_"
 
         for i in range(len(self.test_graphs)):
             er_graphs = self.test_graphs[i]

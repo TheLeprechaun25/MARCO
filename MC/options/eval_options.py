@@ -28,7 +28,7 @@ def get_options():
     parser.add_argument('--mixed_precision', action='store_true', help='Use mixed precision. Only for evaluation')
 
     # Eval
-    parser.add_argument('--eval_graph_type', type=str, default='er700', help='Type of graphs to be used (rb200300, rb8001200, er700800). For rand ER instances use er{n}')
+    parser.add_argument('--eval_graph_type', type=str, default='er200', help='Type of graphs to be used (rb200300, rb8001200, er700800). For rand ER instances use er{n}')
     parser.add_argument('--compile', action='store_true', help='Compile pytorch model')
     parser.add_argument('--save_all_time', action='store_true', help='Save all time')
     parser.add_argument('--n_solutions', type=int, default=50, help='Number of threads')

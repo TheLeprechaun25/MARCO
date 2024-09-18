@@ -26,7 +26,10 @@ class Evaluator:
         self.model = Model(**self.model_params).to(device)
 
         # Restore
-        self.model.load_state_dict(torch.load(self.eval_params['model_load_path'])['model_state_dict'])
+        if device == 'cuda':
+            self.model.load_state_dict(torch.load(self.eval_params['model_load_path'])['model_state_dict'])
+        else:
+            self.model.load_state_dict(torch.load(self.eval_params['model_load_path'], map_location=torch.device('cpu'))['model_state_dict'])
 
         if self.eval_params['verbose']:
             print(f'Number of parameters: {sum(p.numel() for p in self.model.parameters() if p.requires_grad)}')

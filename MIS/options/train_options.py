@@ -32,8 +32,8 @@ def get_options():
     parser.add_argument('--weight_decay', type=float, default=1.0, help='Weight decay')
 
     # Training
-    parser.add_argument('--epochs', type=int, default=50, help='Epochs')
-    parser.add_argument('--n_episodes', type=int, default=20, help='n_episodes')
+    parser.add_argument('--epochs', type=int, default=10, help='Epochs')
+    parser.add_argument('--n_episodes', type=int, default=100, help='n_episodes')
     parser.add_argument('--episode_length', type=int, default=10, help='Episode length')
     parser.add_argument('--train_patience', type=int, default=20, help='Train patience')
     parser.add_argument('--max_train_steps', type=int, default=200, help='Max train steps')
